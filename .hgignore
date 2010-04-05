@@ -1,0 +1,10 @@
+syntax: glob
+distribute*.egg
+distribute*.tar.gz
+*.egg-info
+trace.txt
+dist
+*.pyc
+
+syntax: re
+.DS_Store
