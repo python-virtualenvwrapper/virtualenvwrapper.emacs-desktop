@@ -51,6 +51,9 @@ setup(
     include_package_data = True,
 
     entry_points = {
+        'virtualenvwrapper.initialize_source': [
+            'user_scripts = virtualenvwrapper.emacs_desktop:initialize_source',
+            ],
         'virtualenvwrapper.post_activate': [
             'user_scripts = virtualenvwrapper.emacs_desktop:post_activate',
             ],

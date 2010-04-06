@@ -10,7 +10,14 @@ import logging
 import os
 import subprocess
 
+import pkg_resources
+
 log = logging.getLogger(__name__)
+
+def initialize_source(args):
+    """Provide shell functions to enable/disable desktop controller.
+    """
+    return pkg_resources.resource_string(__name__, 'emacs_desktop.sh')
 
 def post_activate(args):
     """Change the location of the desktop file to the new environment.

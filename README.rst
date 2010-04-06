@@ -17,8 +17,8 @@ Install this plugin with pip::
 
 Or by unpacking the source distribution and running ``setup.py`` directly::
 
-  $ tar zxvf virtualenvwrapper-emacs-desktop-|release|.tar.gz
-  $ cd virtualenvwrapper-emacs-desktop-|relesae|
+  $ tar zxvf virtualenvwrapper-emacs-desktop-X.Y.tar.gz
+  $ cd virtualenvwrapper-emacs-desktop-X.Y
   $ python setup.py install
 
 You may need administrator privileges to install to a global location.
@@ -59,11 +59,16 @@ Enabling the Plugin
 
 Switching desktop sessions every time ``workon`` is used would make it
 impossible to have two shells open and working on separate projects at
-the same time.  Therefore, before taking any action the plugin
-examines the ``DESKTOP_CONTROLLER`` environment variable, looking for
-a non-null value.  If the variable is not set, or is defined but
-empty, the plugin makes no changes.  If the variable is set to any
-value, the session is changed.
+the same time.  Therefore, the plugin must be explicitly enabled in
+the shell where it should control the emacs session.
+
+Two shell functions (``emacs_desktop_controller_on`` and
+``emacs_desktop_controller_off``) are provided to switch the plugin on
+and off.  They do this by changing the variable
+``DESKTOP_CONTROLLER``, which the plugin examines before taking any
+action.  If the variable is not set, or is defined but empty, the
+plugin makes no changes.  If the variable is set to any value, the
+session is changed.
 
 Most modern terminal programs make it easy to create custom
 configurations with specific settings.  Use your terminal's
@@ -71,6 +76,51 @@ customization feature to create a "desktop controller" configuration
 with ``DESKTOP_CONTROLLER`` set, then control
 virtualenvwrapper-emacs-desktop from a terminal using that
 configuration.
+
+Terminal.app
+------------
+
+The default OS X terminal emulator Terminal.app lets you set up
+profiles with custom configurations, including running a command when
+the new window is opened.  Create a new profile, then under the
+**Shell** tab, set:
+
+ :Run command: emacs_desktop_controller_on
+ :Run inside shell: Enabled
+
+
+iTerm
+-----
+
+The third-party OS X terminal emulator iTerm_ lets you set up
+"bookmarks" with custom configurations, including the "Working Dir".
+One way to use this to control the plugin is to set up a special
+bookmark with a working directory set to ``$WORKON_HOME``, then add a
+check to ``~/.bashrc`` to check for that condition.
+
+ :Name: emacs-control
+ :Command: ``bash -l``
+ :Working Dir: ``/Users/username/.virtualenvs``
+ :Terminal: Default
+ :Keyboard: Global
+ :Display: Default
+
+~/.bashrc settings::
+
+    if [ "$(pwd)" = "$WORKON_HOME" ]
+    then
+        emacs_desktop_controller_on
+    else
+        emacs_desktop_controller_off
+    fi
+
+.. _iTerm: http://iterm.sourceforge.net/
+
+.. note::
+
+   If you have suggested configuration mechanisms for other terminal
+   emulators or other platforms, please post them in the comments and I
+   will add them to the documentation here.
 
 References
 ==========
