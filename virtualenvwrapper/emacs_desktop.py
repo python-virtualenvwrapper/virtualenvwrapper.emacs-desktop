@@ -18,11 +18,14 @@ def post_activate(args):
     if not os.environ.get('DESKTOP_CONTROLLER'):
         return
     lisp = '(desktop-change-dir "%s")' % os.environ['VIRTUAL_ENV']
-    log.debug(lisp)
+    log.info(lisp)
     # It would be simpler to use subprocess.call(), but then
     # every time we run emacsclient the 't' result is printed
     # to the console.  Setting up the pipe and then not doing
     # anything with the output prevents the noise.
-    cmd = subprocess.Popen(['emacsclient', '-e', lisp], stdout=subprocess.PIPE)
+    cmd = subprocess.Popen(['emacsclient', '-e', lisp],
+                           stdout=subprocess.PIPE,
+                           shell=False,
+                           )
     cmd.communicate()
     return
