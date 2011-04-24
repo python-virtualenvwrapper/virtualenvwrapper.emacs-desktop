@@ -116,6 +116,22 @@ check to ``~/.bashrc`` to check for that condition.
 
 .. _iTerm: http://iterm.sourceforge.net/
 
+emacs shell
+-----------
+
+shell-mode in emacs sets ``EMACS`` and ``INSIDE_EMACS``, so you can
+test for those environment variables.
+
+Gnome Terminal
+--------------
+
+?
+
+KDE
+---
+
+?
+
 .. note::
 
    If you have suggested configuration mechanisms for other terminal
