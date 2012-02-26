@@ -14,10 +14,12 @@ import pkg_resources
 
 log = logging.getLogger(__name__)
 
+
 def initialize_source(args):
     """Provide shell functions to enable/disable desktop controller.
     """
     return pkg_resources.resource_string(__name__, 'emacs_desktop.sh')
+
 
 def post_activate(args):
     """Change the location of the desktop file to the new environment.
@@ -30,7 +32,9 @@ def post_activate(args):
     # every time we run emacsclient the 't' result is printed
     # to the console.  Setting up the pipe and then not doing
     # anything with the output prevents the noise.
-    cmd = subprocess.Popen(['emacsclient', '-e', lisp],
+    emacsclient = os.environ.get('VIRTUALENVWRAPPER_EMACSCLIENT',
+                                 'emacsclient')
+    cmd = subprocess.Popen([emacsclient, '-e', lisp],
                            stdout=subprocess.PIPE,
                            shell=False,
                            )

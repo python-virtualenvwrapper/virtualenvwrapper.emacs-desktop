@@ -54,6 +54,18 @@ save the ``*Messages*``, ``*Org Agenda*``, and ``*scratch*`` buffers,
 since those are related to emacs operation and not limited to any one
 project.
 
+VIRTUALENVWRAPPER_EMACSCLIENT
+-----------------------------
+
+If the ``emacsclient`` binary visible on your ``$PATH`` does not match
+the version of emacs you are using, set
+``VIRTUALENVWRAPPER_EMACSCLIENT`` to the full path of the version to
+use instead.
+
+::
+
+    export VIRTUALENVWRAPPER_EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+
 Enabling the Plugin
 ===================
 
