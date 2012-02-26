@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 PROJECT = 'virtualenvwrapper-emacs-desktop'
-VERSION = '1.0'
+VERSION = '1.0.1'
 
 # Bootstrap installation of Distribute
 import distribute_setup
