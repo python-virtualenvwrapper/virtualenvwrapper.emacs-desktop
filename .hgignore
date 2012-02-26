@@ -5,6 +5,6 @@ distribute*.tar.gz
 trace.txt
 dist
 *.pyc
-
+*_flymake.py
 syntax: re
 .DS_Store
