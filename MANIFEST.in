@@ -1,1 +1,2 @@
 recursive-include virtualenvwrapper *.sh
+include distribute_setup.py
