@@ -34,6 +34,8 @@ def post_activate(args):
     # anything with the output prevents the noise.
     emacsclient = os.environ.get('VIRTUALENVWRAPPER_EMACSCLIENT',
                                  'emacsclient')
+    log.debug('emacsclient "%s"', emacsclient)
+    log.debug('running %s', [emacsclient, '-e', lisp])
     cmd = subprocess.Popen([emacsclient, '-e', lisp],
                            stdout=subprocess.PIPE,
                            shell=False,
